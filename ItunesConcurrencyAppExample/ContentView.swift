@@ -6,75 +6,64 @@
 //
 
 import SwiftUI
-import CoreData
 
+@available(iOS 15, *)
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+    @StateObject private var itunesRemote = ItunesRemote()
+    let columns =
+        [GridItem(.flexible()), GridItem(.flexible())]
+
 
     var body: some View {
-        List {
-            ForEach(items) { item in
-                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-            }
-            .onDelete(perform: deleteItems)
-        }
-        .toolbar {
-            #if os(iOS)
-            EditButton()
-            #endif
 
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 0) {
+                ForEach(itunesRemote.groups, id: \.self) { group in
+                    Section(header: Text("\(group.sectionIdentifier.rawValue)").font(.title).bold().padding(15)) {
+                        ForEach(group.cellIdentifiers) {
+                            FeedItemView(artwork: $0)
+                        }
+                    }
+                }
             }
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+        .task {
+            itunesRemote.genericGetGroups(ItunesGroup.allCases)
+      //      itunesRemote.useDispatchGroup()
         }
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
+@available(iOS 15, *)
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView()
     }
 }
+
+@available(iOS 15, *)
+struct FeedItemView: View {
+
+    let artwork: Artwork
+
+    var body: some View {
+        AsyncImage(
+            url: URL(string: artwork.imageURL),
+            transaction: .init(animation: .spring())
+        ) { phase in
+            switch phase {
+            case .empty:
+                Color.clear
+            case .success(let image):
+                image
+                    .transition(.opacity.combined(with: .scale))
+            case .failure(let error):
+                Text("There is an error \(error.localizedDescription)")
+            @unknown default:
+                Text("There is an error")
+            }
+        }
+    }
+}
+

@@ -15,6 +15,18 @@
 		7BB92D702679B754008DB98D /* ItunesConcurrencyAppExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92D6E2679B754008DB98D /* ItunesConcurrencyAppExample.xcdatamodeld */; };
 		7BB92D7A2679B754008DB98D /* ItunesConcurrencyAppExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92D792679B754008DB98D /* ItunesConcurrencyAppExampleTests.swift */; };
 		7BB92D842679B754008DB98D /* ItunesConcurrencyAppExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92D832679B754008DB98D /* ItunesConcurrencyAppExampleUITests.swift */; };
+		7BB92D922679B80C008DB98D /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92D912679B80C008DB98D /* RequestError.swift */; };
+		7BB92D942679B85E008DB98D /* GenericAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92D932679B85E008DB98D /* GenericAPI.swift */; };
+		7BB92D962679B8F6008DB98D /* FeedGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92D952679B8F6008DB98D /* FeedGenerator.swift */; };
+		7BB92D982679B915008DB98D /* ItunesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92D972679B915008DB98D /* ItunesClient.swift */; };
+		7BB92D9A2679B935008DB98D /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92D992679B935008DB98D /* Feed.swift */; };
+		7BB92D9C2679BCA7008DB98D /* ItunesRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92D9B2679BCA7008DB98D /* ItunesRemote.swift */; };
+		7BB92D9E2679BCDE008DB98D /* GenericSectionIdentifierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92D9D2679BCDE008DB98D /* GenericSectionIdentifierViewModel.swift */; };
+		7BB92DA22679BD25008DB98D /* SectionIdentifierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92DA12679BD25008DB98D /* SectionIdentifierViewModel.swift */; };
+		7BB92DA52679BD3F008DB98D /* FeedItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92DA42679BD3F008DB98D /* FeedItemViewModel.swift */; };
+		7BB92DA72679BD50008DB98D /* IdentifiableHashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92DA62679BD50008DB98D /* IdentifiableHashable.swift */; };
+		7BB92DA92679BD66008DB98D /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92DA82679BD66008DB98D /* FeedItem.swift */; };
+		7BB92DAB2679BD83008DB98D /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92DAA2679BD83008DB98D /* Artwork.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +58,18 @@
 		7BB92D792679B754008DB98D /* ItunesConcurrencyAppExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesConcurrencyAppExampleTests.swift; sourceTree = "<group>"; };
 		7BB92D7F2679B754008DB98D /* ItunesConcurrencyAppExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ItunesConcurrencyAppExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BB92D832679B754008DB98D /* ItunesConcurrencyAppExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesConcurrencyAppExampleUITests.swift; sourceTree = "<group>"; };
+		7BB92D912679B80C008DB98D /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		7BB92D932679B85E008DB98D /* GenericAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericAPI.swift; sourceTree = "<group>"; };
+		7BB92D952679B8F6008DB98D /* FeedGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedGenerator.swift; sourceTree = "<group>"; };
+		7BB92D972679B915008DB98D /* ItunesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesClient.swift; sourceTree = "<group>"; };
+		7BB92D992679B935008DB98D /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		7BB92D9B2679BCA7008DB98D /* ItunesRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesRemote.swift; sourceTree = "<group>"; };
+		7BB92D9D2679BCDE008DB98D /* GenericSectionIdentifierViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSectionIdentifierViewModel.swift; sourceTree = "<group>"; };
+		7BB92DA12679BD25008DB98D /* SectionIdentifierViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionIdentifierViewModel.swift; sourceTree = "<group>"; };
+		7BB92DA42679BD3F008DB98D /* FeedItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemViewModel.swift; sourceTree = "<group>"; };
+		7BB92DA62679BD50008DB98D /* IdentifiableHashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableHashable.swift; sourceTree = "<group>"; };
+		7BB92DA82679BD66008DB98D /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
+		7BB92DAA2679BD83008DB98D /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +100,10 @@
 		7BB92D572679B753008DB98D = {
 			isa = PBXGroup;
 			children = (
+				7BB92DA32679BD39008DB98D /* ViewModels */,
+				7BB92DA02679BD1E008DB98D /* Protocols */,
+				7BB92D9F2679BCF7008DB98D /* Models */,
+				7BB92D902679B79A008DB98D /* Networking */,
 				7BB92D622679B753008DB98D /* ItunesConcurrencyAppExample */,
 				7BB92D782679B754008DB98D /* ItunesConcurrencyAppExampleTests */,
 				7BB92D822679B754008DB98D /* ItunesConcurrencyAppExampleUITests */,
@@ -128,6 +156,46 @@
 				7BB92D832679B754008DB98D /* ItunesConcurrencyAppExampleUITests.swift */,
 			);
 			path = ItunesConcurrencyAppExampleUITests;
+			sourceTree = "<group>";
+		};
+		7BB92D902679B79A008DB98D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				7BB92D912679B80C008DB98D /* RequestError.swift */,
+				7BB92D932679B85E008DB98D /* GenericAPI.swift */,
+				7BB92D952679B8F6008DB98D /* FeedGenerator.swift */,
+				7BB92D972679B915008DB98D /* ItunesClient.swift */,
+				7BB92D9B2679BCA7008DB98D /* ItunesRemote.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		7BB92D9F2679BCF7008DB98D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7BB92D992679B935008DB98D /* Feed.swift */,
+				7BB92D9D2679BCDE008DB98D /* GenericSectionIdentifierViewModel.swift */,
+				7BB92DA82679BD66008DB98D /* FeedItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7BB92DA02679BD1E008DB98D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7BB92DA12679BD25008DB98D /* SectionIdentifierViewModel.swift */,
+				7BB92DA62679BD50008DB98D /* IdentifiableHashable.swift */,
+				7BB92DAA2679BD83008DB98D /* Artwork.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		7BB92DA32679BD39008DB98D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7BB92DA42679BD3F008DB98D /* FeedItemViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,8 +328,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BB92D962679B8F6008DB98D /* FeedGenerator.swift in Sources */,
+				7BB92DA72679BD50008DB98D /* IdentifiableHashable.swift in Sources */,
+				7BB92DAB2679BD83008DB98D /* Artwork.swift in Sources */,
+				7BB92DA52679BD3F008DB98D /* FeedItemViewModel.swift in Sources */,
+				7BB92D9A2679B935008DB98D /* Feed.swift in Sources */,
 				7BB92D702679B754008DB98D /* ItunesConcurrencyAppExample.xcdatamodeld in Sources */,
+				7BB92D922679B80C008DB98D /* RequestError.swift in Sources */,
+				7BB92D942679B85E008DB98D /* GenericAPI.swift in Sources */,
+				7BB92D982679B915008DB98D /* ItunesClient.swift in Sources */,
+				7BB92DA92679BD66008DB98D /* FeedItem.swift in Sources */,
+				7BB92DA22679BD25008DB98D /* SectionIdentifierViewModel.swift in Sources */,
 				7BB92D6D2679B754008DB98D /* Persistence.swift in Sources */,
+				7BB92D9E2679BCDE008DB98D /* GenericSectionIdentifierViewModel.swift in Sources */,
+				7BB92D9C2679BCA7008DB98D /* ItunesRemote.swift in Sources */,
 				7BB92D662679B753008DB98D /* ContentView.swift in Sources */,
 				7BB92D642679B753008DB98D /* ItunesConcurrencyAppExampleApp.swift in Sources */,
 			);
