@@ -27,9 +27,8 @@ struct ContentView: View {
             }
         }
         .task {
-            itunesRemote.asyncGroups(from: ItunesGroupIdentifier.allCases)
-//            itunesRemote.getAppGroups(ItunesGroupIdentifier.allCases)
-            //itunesRemote.dispatchGroups(from: ItunesGroupIdentifier.allCases)
+            itunesRemote.dispatchGroups(from: ItunesCategoryIdentifier.allCases)
+            itunesRemote.asyncGroups(from: ItunesCategoryIdentifier.allCases)
         }
     }
 }
