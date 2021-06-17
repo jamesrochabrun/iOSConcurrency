@@ -17,9 +17,9 @@ struct ContentView: View {
 
         ScrollView {
             LazyVGrid(columns: columns, spacing: 0) {
-                ForEach(itunesRemote.groups, id: \.self) { group in
-                    Section(header: Text("\(group.sectionID.title)").font(.title).bold().padding(15)) {
-                        ForEach(group.cellIDs) {
+                ForEach(itunesRemote.itunesSections, id: \.self) { section in
+                    Section(header: Text("\(section.sectionID.title)").font(.title).bold().padding(15)) {
+                        ForEach(section.cellIDs) {
                             FeedItemView(artwork: $0)
                         }
                     }
@@ -27,9 +27,9 @@ struct ContentView: View {
             }
         }
         .task {
-           // itunesRemote.asyncGroups(from: ItunesGroupIdentifier.allCases)
-          //  itunesRemote.getAppGroups(ItunesGroup.allCases)
-            itunesRemote.dispatchGroups(from: ItunesGroupIdentifier.allCases)
+            itunesRemote.asyncGroups(from: ItunesGroupIdentifier.allCases)
+//            itunesRemote.getAppGroups(ItunesGroupIdentifier.allCases)
+            //itunesRemote.dispatchGroups(from: ItunesGroupIdentifier.allCases)
         }
     }
 }
