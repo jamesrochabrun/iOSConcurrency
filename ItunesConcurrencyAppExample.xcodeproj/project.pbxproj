@@ -21,8 +21,6 @@
 		7BB92D982679B915008DB98D /* ItunesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92D972679B915008DB98D /* ItunesClient.swift */; };
 		7BB92D9A2679B935008DB98D /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92D992679B935008DB98D /* Feed.swift */; };
 		7BB92D9C2679BCA7008DB98D /* ItunesRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92D9B2679BCA7008DB98D /* ItunesRemote.swift */; };
-		7BB92D9E2679BCDE008DB98D /* GenericSectionIdentifierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92D9D2679BCDE008DB98D /* GenericSectionIdentifierViewModel.swift */; };
-		7BB92DA22679BD25008DB98D /* SectionIdentifierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92DA12679BD25008DB98D /* SectionIdentifierViewModel.swift */; };
 		7BB92DA52679BD3F008DB98D /* FeedItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92DA42679BD3F008DB98D /* FeedItemViewModel.swift */; };
 		7BB92DA72679BD50008DB98D /* IdentifiableHashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92DA62679BD50008DB98D /* IdentifiableHashable.swift */; };
 		7BB92DA92679BD66008DB98D /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB92DA82679BD66008DB98D /* FeedItem.swift */; };
@@ -64,8 +62,6 @@
 		7BB92D972679B915008DB98D /* ItunesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesClient.swift; sourceTree = "<group>"; };
 		7BB92D992679B935008DB98D /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		7BB92D9B2679BCA7008DB98D /* ItunesRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesRemote.swift; sourceTree = "<group>"; };
-		7BB92D9D2679BCDE008DB98D /* GenericSectionIdentifierViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSectionIdentifierViewModel.swift; sourceTree = "<group>"; };
-		7BB92DA12679BD25008DB98D /* SectionIdentifierViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionIdentifierViewModel.swift; sourceTree = "<group>"; };
 		7BB92DA42679BD3F008DB98D /* FeedItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemViewModel.swift; sourceTree = "<group>"; };
 		7BB92DA62679BD50008DB98D /* IdentifiableHashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableHashable.swift; sourceTree = "<group>"; };
 		7BB92DA82679BD66008DB98D /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
@@ -174,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				7BB92D992679B935008DB98D /* Feed.swift */,
-				7BB92D9D2679BCDE008DB98D /* GenericSectionIdentifierViewModel.swift */,
 				7BB92DA82679BD66008DB98D /* FeedItem.swift */,
 			);
 			path = Models;
@@ -183,7 +178,6 @@
 		7BB92DA02679BD1E008DB98D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				7BB92DA12679BD25008DB98D /* SectionIdentifierViewModel.swift */,
 				7BB92DA62679BD50008DB98D /* IdentifiableHashable.swift */,
 				7BB92DAA2679BD83008DB98D /* Artwork.swift */,
 			);
@@ -338,9 +332,7 @@
 				7BB92D942679B85E008DB98D /* GenericAPI.swift in Sources */,
 				7BB92D982679B915008DB98D /* ItunesClient.swift in Sources */,
 				7BB92DA92679BD66008DB98D /* FeedItem.swift in Sources */,
-				7BB92DA22679BD25008DB98D /* SectionIdentifierViewModel.swift in Sources */,
 				7BB92D6D2679B754008DB98D /* Persistence.swift in Sources */,
-				7BB92D9E2679BCDE008DB98D /* GenericSectionIdentifierViewModel.swift in Sources */,
 				7BB92D9C2679BCA7008DB98D /* ItunesRemote.swift in Sources */,
 				7BB92D662679B753008DB98D /* ContentView.swift in Sources */,
 				7BB92D642679B753008DB98D /* ItunesConcurrencyAppExampleApp.swift in Sources */,

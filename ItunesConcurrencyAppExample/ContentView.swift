@@ -11,17 +11,15 @@ import SwiftUI
 struct ContentView: View {
 
     @StateObject private var itunesRemote = ItunesRemote()
-    let columns =
-        [GridItem(.flexible()), GridItem(.flexible())]
-
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
 
     var body: some View {
 
         ScrollView {
             LazyVGrid(columns: columns, spacing: 0) {
                 ForEach(itunesRemote.groups, id: \.self) { group in
-                    Section(header: Text("\(group.sectionIdentifier.rawValue)").font(.title).bold().padding(15)) {
-                        ForEach(group.cellIdentifiers) {
+                    Section(header: Text("\(group.sectionID.title)").font(.title).bold().padding(15)) {
+                        ForEach(group.cellIDs) {
                             FeedItemView(artwork: $0)
                         }
                     }
@@ -29,8 +27,9 @@ struct ContentView: View {
             }
         }
         .task {
-            itunesRemote.genericGetGroups(ItunesGroup.allCases)
-      //      itunesRemote.useDispatchGroup()
+           // itunesRemote.asyncGroups(from: ItunesGroupIdentifier.allCases)
+          //  itunesRemote.getAppGroups(ItunesGroup.allCases)
+            itunesRemote.dispatchGroups(from: ItunesGroupIdentifier.allCases)
         }
     }
 }
@@ -48,18 +47,23 @@ struct FeedItemView: View {
     let artwork: Artwork
 
     var body: some View {
+        asyncImageView
+    }
+
+    private var asyncImageView: some View {
         AsyncImage(
             url: URL(string: artwork.imageURL),
             transaction: .init(animation: .spring())
         ) { phase in
             switch phase {
-            case .empty:
-                Color.clear
+            case .empty, .failure:
+                ProgressView()
+                    .frame(idealHeight: 250)
             case .success(let image):
                 image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .transition(.opacity.combined(with: .scale))
-            case .failure(let error):
-                Text("There is an error \(error.localizedDescription)")
             @unknown default:
                 Text("There is an error")
             }
