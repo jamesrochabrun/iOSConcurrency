@@ -8,7 +8,7 @@
 import Combine
 import UIKit
 
-enum ItunesGroupIdentifier: Int, CaseIterable {
+enum ItunesCategoryIdentifier: Int, CaseIterable {
 
     case apps
     case podcasts
@@ -22,7 +22,7 @@ enum ItunesGroupIdentifier: Int, CaseIterable {
         }
     }
 
-    static let limit = 4
+    private static let limit = 4 // the number of results that we want from each category.
     var mediaType: MediaType {
         switch self {
         case .apps: return .apps(feedType: .topFree(genre: .all), limit: Self.limit)
@@ -32,130 +32,57 @@ enum ItunesGroupIdentifier: Int, CaseIterable {
     }
 }
 
-extension ItunesGroupIdentifier {
-
-    init(kind: String) throws {
-        switch kind {
-        case "iosSoftware": self = .apps
-        case "podcast": self = .podcasts
-        case "tvEpisode": self = .tvShows
-        default: throw RequestError.invalidData
-        }
-    }
-}
-
 @MainActor
 final class ItunesRemote: ObservableObject {
 
+    struct ItunesCategorySection: IdentifiableHashable {
+        let sectionID: ItunesCategoryIdentifier
+        let cellIDs: [FeedItemViewModel]
+        var id: ItunesCategoryIdentifier { sectionID }
+    }
+
     private let service = ItunesClient()
     private var cancellables: Set<AnyCancellable> = []
-    @Published var groups:  [ItunesSection<FeedItemViewModel>] = []
+    @Published var itunesSections: [ItunesCategorySection] = []
 
     // MARK:- Dispatch Group
-    func dispatchGroups(from groupIdentifiers: [ItunesGroupIdentifier]) {
-        let dispatchGroup = DispatchGroup()
-        var apps, podcasts, tvShows: Feed<ItunesResources<FeedItem>>?
+    func dispatchGroups(
+        from categoryIdentifiers: [ItunesCategoryIdentifier]) {
 
-        for kind in groupIdentifiers {
+        let dispatchGroup = DispatchGroup()
+        var sections: [ItunesCategorySection] = []
+        for categoryIdentifier in categoryIdentifiers {
             dispatchGroup.enter()
-            service.fetch(Feed<ItunesResources<FeedItem>>.self, itunes: Itunes(mediaTypePath: kind.mediaType)).sink { _ in
+            service.fetch(Feed<ItunesResources<FeedItem>>.self, itunes: Itunes(mediaTypePath: categoryIdentifier.mediaType)).sink { _ in
                 dispatchGroup.leave()
             } receiveValue: { feed in
-                let kind = feed.feed?.results.first?.kind ?? ""
-                let itunesGroup = try! ItunesGroupIdentifier(kind: kind)
-                switch itunesGroup {
-                case .apps: apps = feed
-                case .podcasts: podcasts = feed
-                case .tvShows: tvShows = feed
-                }
+                let feedItemViewModels = feed.feed?.results.compactMap { FeedItemViewModel(model: $0) } ?? []
+                sections.append(ItunesCategorySection(sectionID: categoryIdentifier, cellIDs: feedItemViewModels))
             }.store(in: &cancellables)
         }
-
         dispatchGroup.notify(queue: .main) {
-            self.groups = self.identifiersFor(apps: apps, podcasts: podcasts, tvShows: tvShows)
+            self.itunesSections = sections.sorted { $0.sectionID.rawValue < $1.sectionID.rawValue }
         }
     }
 
     // MARK:- Async/await Group task
     @available(iOS 15, *)
-    func asyncGroups(from groupIdentifiers: [ItunesGroupIdentifier]) {
-
+    func asyncGroups(
+        from categoryIdentifiers: [ItunesCategoryIdentifier]) {
         async {
-            var apps, podcasts, tvShows: Feed<ItunesResources<FeedItem>>?
-            try await withThrowingTaskGroup(of: Feed<ItunesResources<FeedItem>>.self, body: { group in
-                for kind in groupIdentifiers {
-                    group.async {
-                        return try await self.service.clientFetchAsync(Feed<ItunesResources<FeedItem>>.self, itunes: Itunes(mediaTypePath: kind.mediaType))
+            var sections: [ItunesCategorySection] = []
+            try await withThrowingTaskGroup(of: ItunesCategorySection.self) { categorySection in
+                for categoryIdentifier in categoryIdentifiers {
+                    categorySection.async {
+                        let feedItemViewModels = try await self.service.clientFetchAsync(Feed<ItunesResources<FeedItem>>.self, itunes: Itunes(mediaTypePath: categoryIdentifier.mediaType)).feed?.results.map { FeedItemViewModel(model: $0) } ?? []
+                        return ItunesCategorySection(sectionID: categoryIdentifier, cellIDs: feedItemViewModels)
                     }
                 }
-                for try await kindGroup in group {
-                    let kind = kindGroup.feed?.results.first?.kind ?? ""
-                    let itunesGroup = try ItunesGroupIdentifier(kind: kind)
-                    switch itunesGroup {
-                    case .apps: apps = kindGroup
-                    case .podcasts: podcasts = kindGroup
-                    case .tvShows: tvShows = kindGroup
-                    }
+                for try await itunesCategorySection in categorySection {
+                    sections.append(itunesCategorySection)
                 }
-            })
-            self.groups = self.identifiersFor(apps: apps, podcasts: podcasts, tvShows: tvShows)
-        }
-    }
-
-    func identifiersFor(
-        apps: Feed<ItunesResources<FeedItem>>?,
-        podcasts: Feed<ItunesResources<FeedItem>>?,
-        tvShows: Feed<ItunesResources<FeedItem>>?)
-    ->  [ItunesSection<FeedItemViewModel>] {
-
-        var finalGroups: [Feed<ItunesResources<FeedItem>>] = []
-        if let apps = apps { finalGroups.append(apps) }
-        if let podcats = podcasts { finalGroups.append(podcats) }
-        if let tvShows = tvShows { finalGroups.append(tvShows) }
-        return sections(from: finalGroups)
-    }
-
-    // MARK:- Combine
-    @available(iOS 14, *)
-    func getAppGroups(
-        _ kinds: [ItunesGroupIdentifier]) {
-        kinds.map { service.fetch(Feed<ItunesResources<FeedItem>>.self, itunes: Itunes(mediaTypePath: $0.mediaType)).eraseToAnyPublisher() }
-        .publisher
-        .flatMap { $0 }
-        .collect()
-        .sink {
-            dump($0)
-        } receiveValue: { groups in
-            self.groups = self.sections(from: groups)
-        }.store(in: &cancellables)
-    }
-
-    // MARK:- Helper
-    private func sections(
-        from feeds: [Feed<ItunesResources<FeedItem>>])
-    -> [ItunesSection<FeedItemViewModel>] {
-
-        var sections: [ItunesSection<FeedItemViewModel>] = []
-        for feed in feeds {
-            let kind = feed.feed?.results.first?.kind ?? ""
-            let itunesGroup = try! ItunesGroupIdentifier(kind: kind)
-            let cellIdentifiers = feed.feed?.results.compactMap { FeedItemViewModel(model: $0) } ?? []
-            switch itunesGroup {
-            case .apps:
-                sections.append(ItunesSection(sectionID: .apps, cellIDs: cellIdentifiers))
-            case .podcasts:
-                sections.append(ItunesSection(sectionID: .podcasts, cellIDs: cellIdentifiers))
-            case .tvShows:
-                sections.append(ItunesSection(sectionID: .tvShows, cellIDs: cellIdentifiers))
             }
+            self.itunesSections = sections.sorted { $0.sectionID.rawValue < $1.sectionID.rawValue }
         }
-        return sections
     }
-}
-
-
-struct ItunesSection<Model: IdentifiableHashable>: IdentifiableHashable {
-    let sectionID: ItunesGroupIdentifier
-    let cellIDs: [Model]
-    var id: ItunesGroupIdentifier { sectionID }
 }
