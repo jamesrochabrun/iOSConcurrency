@@ -18,17 +18,13 @@ struct FeedItem: Codable {
     let artistId: String?
     let artistUrl: String?
     let artworkUrl100: String
-  //  let genres: [Genre]
+    let genres: [Genre]
     let url: String
-//
-//    private enum CodingKeys: String, CodingKey {
-//        case artistName, id, releaseDate, name, kind, copyright, artistId, artistUrl, genres, url
-//        case artWorkURL = "artworkUrl100"
-//    }
+    
 }
 
 struct Genre: Codable {
-    let genreId: String
-    let name: String
-    let url: String
+    let genreId: String?
+    let name: String?
+    let url: String?
 }

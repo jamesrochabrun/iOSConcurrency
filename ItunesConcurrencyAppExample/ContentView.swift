@@ -11,14 +11,17 @@ import SwiftUI
 struct ContentView: View {
 
     @StateObject private var itunesRemote = ItunesRemote()
+    
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
 
     var body: some View {
-
         ScrollView {
             LazyVGrid(columns: columns, spacing: 0) {
                 ForEach(itunesRemote.itunesSections, id: \.self) { group in
-                    Section(header: Text("\(group.sectionID.title)").font(.title).bold().padding(15)) {
+                    Section(header: Text("\(group.sectionID.title)")
+                                .font(.title)
+                                .bold()
+                                .padding(15)) {
                         ForEach(group.cellIDs) {
                             FeedItemView(artwork: $0)
                         }
@@ -27,7 +30,7 @@ struct ContentView: View {
             }
         }
         .task {
-            itunesRemote.asyncGroups(from: ItunesCategoryIdentifier.allCases)
+            itunesRemote.executeGroupTasksFor(identifiers: ItunesCategoryIdentifier.allCases)
         }
     }
 }

@@ -8,104 +8,122 @@
 import Foundation
 
 /**
- Example payload.
  {
  "feed": {
- "title": "Best of 2018 Albums",
- "id": "https://rss.itunes.apple.com/api/v1/ca/apple-music/new-releases/all/10/explicit.json",
+ "title": "Top Albums",
+ "id": "https://rss.applemarketingtools.com/api/v2/us/music/most-played/4/albums.json",
  "author": {
- "name": "iTunes Store",
- "uri": "http://wwww.apple.com/ca/itunes/"
+ "name": "Apple",
+ "url": "https://www.apple.com/"
  },
  "links": [
  {
- "self": "https://rss.itunes.apple.com/api/v1/ca/apple-music/new-releases/all/10/explicit.json"
- },
- {
- "alternate": "https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewRoom?fcId=998773106&app=music"
+ "self": "https://rss.applemarketingtools.com/api/v2/us/music/most-played/4/albums.json"
  }
  ],
- "copyright": "Copyright © 2018 Apple Inc. All rights reserved.",
- "country": "ca",
- "icon": "http://itunes.apple.com/favicon.ico",
- "updated": "2019-01-11T01:21:37.000-08:00",
+ "copyright": "Copyright © 2022 Apple Inc. All rights reserved.",
+ "country": "us",
+ "icon": "https://www.apple.com/favicon.ico",
+ "updated": "Mon, 3 Jan 2022 22:57:56 +0000",
  "results": [
  {
- "artistName": "Drake",
- "id": "1418213110",
- "releaseDate": "2018-06-29",
- "name": "Scorpion",
- "kind": "album",
- "copyright": "℗ 2018 Young Money/Cash Money Records",
- "artistId": "271256",
- "contentAdvisoryRating": "Explicit",
- "artistUrl": "https://music.apple.com/ca/artist/drake/271256?app=music",
- "artworkUrl100": "https://is4-ssl.mzstatic.com/image/thumb/Music128/v4/d5/7d/47/d57d4729-3acf-e6d6-1c75-2074e9cb27ec/00602567892410.rgb.jpg/200x200bb.png",
+ "artistName": "Lin-Manuel Miranda, Germaine Franco & Encanto - Cast",
+ "id": "1594677532",
+ "name": "Encanto (Original Motion Picture Soundtrack)",
+ "releaseDate": "2021-11-19",
+ "kind": "albums",
+ "artistId": "329027198",
+ "artistUrl": "https://music.apple.com/us/artist/lin-manuel-miranda/329027198",
+ "artworkUrl100": "https://is2-ssl.mzstatic.com/image/thumb/Music126/v4/94/4d/9a/944d9a8d-0549-f537-5706-5b083bd84a7d/21UM1IM38949.rgb.jpg/100x100bb.jpg",
  "genres": [
  {
- "genreId": "18",
- "name": "Hip-Hop/Rap",
- "url": "https://itunes.apple.com/ca/genre/id18"
+ "genreId": "16",
+ "name": "Soundtrack",
+ "url": "https://itunes.apple.com/us/genre/id16"
  },
  {
  "genreId": "34",
  "name": "Music",
- "url": "https://itunes.apple.com/ca/genre/id34"
+ "url": "https://itunes.apple.com/us/genre/id34"
+ }
+ ],
+ "url": "https://music.apple.com/us/album/encanto-original-motion-picture-soundtrack/1594677532"
  },
  {
- "genreId": "1076",
- "name": "Rap",
- "url": "https://itunes.apple.com/ca/genre/id1076"
+ "artistName": "Birdman & YoungBoy Never Broke Again",
+ "id": "1599656830",
+ "name": "From The Bayou",
+ "releaseDate": "2021-12-10",
+ "kind": "albums",
+ "artistId": "72812522",
+ "artistUrl": "https://music.apple.com/us/artist/birdman/72812522",
+ "contentAdvisoryRating": "Explict",
+ "artworkUrl100": "https://is4-ssl.mzstatic.com/image/thumb/Music126/v4/83/b2/2c/83b22c5a-e2ad-3ce6-66ae-4cc77fa041ca/190296329036.jpg/100x100bb.jpg",
+ "genres": [
+ {
+ "genreId": "18",
+ "name": "Hip-Hop/Rap",
+ "url": "https://itunes.apple.com/us/genre/id18"
  },
+ {
+ "genreId": "34",
+ "name": "Music",
+ "url": "https://itunes.apple.com/us/genre/id34"
+ }
+ ],
+ "url": "https://music.apple.com/us/album/from-the-bayou/1599656830"
+ },
+ {
+ "artistName": "Summer Walker",
+ "id": "1590029262",
+ "name": "Still Over It",
+ "releaseDate": "2021-11-05",
+ "kind": "albums",
+ "artistId": "990402287",
+ "artistUrl": "https://music.apple.com/us/artist/summer-walker/990402287",
+ "contentAdvisoryRating": "Explict",
+ "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/f0/8c/bf/f08cbffc-1101-f974-a2d3-38381d8ed506/21UM1IM23130.rgb.jpg/100x100bb.jpg",
+ "genres": [
  {
  "genreId": "15",
  "name": "R&B/Soul",
- "url": "https://itunes.apple.com/ca/genre/id15"
- },
- {
- "genreId": "1136",
- "name": "Contemporary R&B",
- "url": "https://itunes.apple.com/ca/genre/id1136"
- }
- ],
- "url": "https://music.apple.com/ca/album/scorpion/1418213110?app=music"
- },
- {
- "artistName": "Post Malone",
- "id": "1373516902",
- "releaseDate": "2018-04-27",
- "name": "beerbongs & bentleys",
- "kind": "album",
- "copyright": "℗ 2018 Republic Records, a division of UMG Recordings, Inc.",
- "artistId": "966309175",
- "contentAdvisoryRating": "Explicit",
- "artistUrl": "https://music.apple.com/ca/artist/post-malone/966309175?app=music",
- "artworkUrl100": "https://is3-ssl.mzstatic.com/image/thumb/Music128/v4/9f/54/d0/9f54d048-2e01-63ff-2efc-4f1c5d8fe1be/00602567647461.rgb.jpg/200x200bb.png",
- "genres": [
- {
- "genreId": "18",
- "name": "Hip-Hop/Rap",
- "url": "https://itunes.apple.com/ca/genre/id18"
+ "url": "https://itunes.apple.com/us/genre/id15"
  },
  {
  "genreId": "34",
  "name": "Music",
- "url": "https://itunes.apple.com/ca/genre/id34"
- },
- {
- "genreId": "1076",
- "name": "Rap",
- "url": "https://itunes.apple.com/ca/genre/id1076"
- },
- {
- "genreId": "1068",
- "name": "Alternative Rap",
- "url": "https://itunes.apple.com/ca/genre/id1068"
+ "url": "https://itunes.apple.com/us/genre/id34"
  }
  ],
- "url": "https://music.apple.com/ca/album/beerbongs-bentleys/1373516902?app=music"
+ "url": "https://music.apple.com/us/album/still-over-it/1590029262"
+ },
+ {
+ "artistName": "Juice WRLD",
+ "id": "1600580338",
+ "name": "Fighting Demons (Lyric Video Version)",
+ "releaseDate": "2021-12-10",
+ "kind": "albums",
+ "artistId": "1368733420",
+ "artistUrl": "https://music.apple.com/us/artist/juice-wrld/1368733420",
+ "contentAdvisoryRating": "Explict",
+ "artworkUrl100": "https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/f1/64/f3/f164f3d0-2835-afc2-e2bc-e13cde8fd76b/21UM1IM54282.rgb.jpg/100x100bb.jpg",
+ "genres": [
+ {
+ "genreId": "18",
+ "name": "Hip-Hop/Rap",
+ "url": "https://itunes.apple.com/us/genre/id18"
+ },
+ {
+ "genreId": "34",
+ "name": "Music",
+ "url": "https://itunes.apple.com/us/genre/id34"
  }
- .... more items.....
+ ],
+ "url": "https://music.apple.com/us/album/fighting-demons-lyric-video-version/1600580338"
+ }
+ ]
+ }
+ }
 
  Leaving this paylod so dev can understand the below structures.
  - Every feed from the https://rss.itunes.apple.com/en-us/?country=ca will have the same root structure.
@@ -115,7 +133,7 @@ import Foundation
 
 struct Author: Decodable {
     let name: String
-    let uri: String
+    let url: String
 }
 
 protocol ItunesResource: Decodable {
