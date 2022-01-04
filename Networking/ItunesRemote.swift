@@ -67,7 +67,6 @@ final class ItunesRemote: ObservableObject {
     }
 
     // MARK:- Async/await Group task Example
-    @available(iOS 15, *)
     func executeGroupTasksFor(identifiers: [ItunesCategoryIdentifier]) {
         Task.init {
             var sections: [ItunesCategorySection] = []

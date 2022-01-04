@@ -32,7 +32,6 @@ final class ItunesClient: CombineAPI {
     }
     /// Groups
     ///
-    @available(iOS 15, *)
     public func clientFetchAsync<Feed: FeedProtocol>(_ feed: Feed.Type,
                                                      itunes: Itunes) async throws -> Feed  {
         print("PATH: \(String(describing: itunes.request.url?.absoluteString))")
